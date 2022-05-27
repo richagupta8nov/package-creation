@@ -1,0 +1,133 @@
+{
+  "recordTypeMap": {},
+  "RecordSetBundles": [
+    {
+      "Records": [
+        {
+          "attributes": {
+            "type": "copado__JobTemplate__c",
+            "url": "/services/data/v54.0/sobjects/copado__JobTemplate__c/a0u5j000000plIMAAY"
+          },
+          "copado__ApiName__c": "Heroku Promote_1",
+          "copado__Type__c": "Custom",
+          "copado__Version__c": 1,
+          "CreatedDate": "2022-05-25T03:21:06.000+0000",
+          "Id": "a0u5j000000plIMAAY",
+          "IsDeleted": false,
+          "LastModifiedDate": "2022-05-25T03:21:06.000+0000",
+          "LastReferencedDate": "2022-05-25T06:55:13.000+0000",
+          "LastViewedDate": "2022-05-25T06:55:13.000+0000",
+          "Name": "Heroku Promote",
+          "SystemModstamp": "2022-05-25T03:21:06.000+0000"
+        },
+        {
+          "attributes": {
+            "type": "copado__JobTemplate__c",
+            "url": "/services/data/v54.0/sobjects/copado__JobTemplate__c/a0u5j000000plIlAAI"
+          },
+          "copado__ApiName__c": "Heroku_Deploy_1",
+          "copado__Type__c": "Custom",
+          "copado__Version__c": 1,
+          "CreatedDate": "2022-05-25T07:57:57.000+0000",
+          "Id": "a0u5j000000plIlAAI",
+          "IsDeleted": false,
+          "LastModifiedDate": "2022-05-25T07:57:57.000+0000",
+          "LastReferencedDate": "2022-05-25T07:57:58.000+0000",
+          "LastViewedDate": "2022-05-25T07:57:58.000+0000",
+          "Name": "Heroku_Deploy",
+          "SystemModstamp": "2022-05-25T07:57:57.000+0000"
+        }
+      ],
+      "ObjectType": "copado__JobTemplate__c"
+    },
+    {
+      "Records": [
+        {
+          "attributes": {
+            "type": "copado__JobStep__c",
+            "url": "/services/data/v54.0/sobjects/copado__JobStep__c/a0t5j000004DOaCAAW"
+          },
+          "copado__ApiName__c": "Heroku Promote_Heroku Promote",
+          "copado__ConfigJson__c": "{\"functionName\":\"heroku_promote\",\"parameters\":[{\"name\":\"git_json\",\"value\":\"{$Context.Repository.Credential}\"},{\"name\":\"user_stories\",\"value\":\"{$Context.JobExecution__r.DataJson.userStoryBranches}\"},{\"name\":\"promotion\",\"value\":\"{$Context.JobExecution__r.DataJson.promotionBranchName}\"},{\"name\":\"target_branch\",\"value\":\"{$Context.JobExecution__r.DataJson.destinationBranchName}\"},{\"name\":\"tag\",\"value\":\"{$Job.ExecutionParent.Release__r.Version__c}\"},{\"name\":\"merge_strategy\",\"value\":\"theirs\"}]}",
+          "copado__CustomType__c": "Function",
+          "copado__JobTemplate__c": "a0u5j000000plIMAAY",
+          "copado__Order__c": 1,
+          "copado__Type__c": "Function",
+          "CreatedDate": "2022-05-25T03:21:57.000+0000",
+          "Id": "a0t5j000004DOaCAAW",
+          "IsDeleted": false,
+          "LastModifiedDate": "2022-05-25T03:21:57.000+0000",
+          "Name": "Heroku Promote",
+          "SystemModstamp": "2022-05-25T03:21:57.000+0000"
+        },
+        {
+          "attributes": {
+            "type": "copado__JobStep__c",
+            "url": "/services/data/v54.0/sobjects/copado__JobStep__c/a0t5j000004DOatAAG"
+          },
+          "copado__ApiName__c": "Heroku_Deploy_heroku_Deploy",
+          "copado__ConfigJson__c": "{\"functionName\":\"heroku_deploy\",\"parameters\":[{\"name\":\"git_json\",\"value\":\"{$Context.Repository.Credential}\"},{\"name\":\"promotion\",\"value\":\"{$Context.JobExecution__r.DataJson.promotionBranchName}\"},{\"name\":\"app_name\",\"value\":\"{$Destination.Property.Heroku_App_Name}\"},{\"name\":\"heroku_api_key\",\"value\":\"{$Pipeline.Property.Mule_Client_Id}\"},{\"name\":\"target_branch\",\"value\":\"{$Context.JobExecution__r.DataJson.destinationBranchName}\"}]}",
+          "copado__CustomType__c": "Function",
+          "copado__JobTemplate__c": "a0u5j000000plIlAAI",
+          "copado__Order__c": 1,
+          "copado__Type__c": "Function",
+          "CreatedDate": "2022-05-25T07:58:40.000+0000",
+          "Id": "a0t5j000004DOatAAG",
+          "IsDeleted": false,
+          "LastModifiedDate": "2022-05-25T07:58:40.000+0000",
+          "Name": "heroku_Deploy",
+          "SystemModstamp": "2022-05-25T07:58:40.000+0000"
+        }
+      ],
+      "ObjectType": "copado__JobStep__c"
+    },
+    {
+      "Records": [
+        {
+          "attributes": {
+            "type": "copado__Function__c",
+            "url": "/services/data/v54.0/sobjects/copado__Function__c/a0l5j000000FA20AAG"
+          },
+          "copado__API_Name__c": "heroku_promote",
+          "copado__Image_Name__c": "copado-function-core:v1",
+          "copado__Options__c": "[ ]",
+          "copado__Parameters__c": "[ {\n  \"name\" : \"git_json\",\n  \"defaultValue\" : \"{$Context.Repository.Credential}\"\n}, {\n  \"name\" : \"user_stories\",\n  \"defaultValue\" : \"{$Context.JobExecution__r.DataJson.userStoryBranches}\"\n}, {\n  \"name\" : \"promotion\",\n  \"defaultValue\" : \"{$Context.JobExecution__r.DataJson.promotionBranchName}\"\n}, {\n  \"name\" : \"target_branch\",\n  \"defaultValue\" : \"{$Context.JobExecution__r.DataJson.destinationBranchName}\"\n}, {\n  \"name\" : \"tag\",\n  \"defaultValue\" : \"{$Job.ExecutionParent.Release__r.Version__c}\"\n}, {\n  \"name\" : \"merge_strategy\",\n  \"defaultValue\" : \"theirs\"\n} ]",
+          "copado__Script__c": "git_depth=${git_depth:-100}  # set a default git depth of 100 commits\nmerge_strategy=${merge_strategy-theirs} # set default merge strategy to ours (only if unset)\nif [ -n \"$merge_strategy\" ]; then merge_strategy_option=(-X \"$merge_strategy\"); else merge_strategy_option=(); fi\n\necho \"promotion branch: $promotion\"\necho \"merge strategy: $merge_strategy\"\necho \"user stories: $user_stories\"\necho \"git_depth: $git_depth\"\ncopado --progress \"fetching $target_branch\"\ncopado-git-get --depth \"$git_depth\" \"$target_branch\"\ncopado-git-get --depth \"$git_depth\" --create \"$promotion\"\nbranches=$(echo \"$user_stories\" | jq -c -r '.[]')\nfor user_story in ${branches[@]}; do\n    echo \"merging $user_story\"\n    copado-git-get --depth \"$git_depth\" \"$user_story\"\n    git checkout \"$promotion\"\n    git merge \"${merge_strategy_option[@]}\" -m \"auto resolved $user_story win over $promotion\" \"$user_story\"\ndone\n\ncopado --progress \"pushing $promotion $tag\"\n\nif [ -n \"$tag\" ]; then\n    git tag \"$tag\"\n    git push --atomic origin \"$promotion\" \"$tag\"\nelse\n    echo \"no tag specified\"\n    git push origin \"$promotion\"\nfi",
+          "copado__Type__c": "Custom",
+          "copado__Worker_Size__c": "S",
+          "CreatedDate": "2022-05-25T02:20:43.000+0000",
+          "Id": "a0l5j000000FA20AAG",
+          "IsDeleted": false,
+          "LastModifiedDate": "2022-05-25T03:19:49.000+0000",
+          "LastReferencedDate": "2022-05-25T03:19:49.000+0000",
+          "LastViewedDate": "2022-05-25T03:19:49.000+0000",
+          "Name": "Heroku Promote",
+          "SystemModstamp": "2022-05-25T03:19:49.000+0000"
+        },
+        {
+          "attributes": {
+            "type": "copado__Function__c",
+            "url": "/services/data/v54.0/sobjects/copado__Function__c/a0l5j000000FA54AAG"
+          },
+          "copado__API_Name__c": "heroku_deploy",
+          "copado__Image_Name__c": "us.gcr.io/copado/copado-function-core:v1",
+          "copado__Options__c": "[ ]",
+          "copado__Parameters__c": "[ {\n  \"name\" : \"git_json\",\n  \"defaultValue\" : \"{$Context.Repository.Credential}\"\n}, {\n  \"name\" : \"promotion\",\n  \"defaultValue\" : \"{$Context.JobExecution__r.DataJson.promotionBranchName}\"\n}, {\n  \"name\" : \"app_name\",\n  \"defaultValue\" : \"{$Destination.Property.Heroku_App_Name}\"\n}, {\n  \"name\" : \"heroku_api_key\",\n  \"defaultValue\" : \"{$Pipeline.Property.Mule_Client_Id}\"\n}, {\n  \"name\" : \"target_branch\",\n  \"defaultValue\" : \"{$Context.JobExecution__r.DataJson.destinationBranchName}\"\n} ]",
+          "copado__Script__c": "copado --progress \"fetching $promotion\"\ncopado-git-get \"$promotion\"\ncopado --progress \"deploying $app_name\"\ndpl --provider=heroku --api_key=\"$heroku_api_key\" --app=\"$app_name\"\ncopado-git-get --depth 100 \"$target_branch\"\ngit merge \"$promotion\"\ngit push origin \"$target_branch\"",
+          "copado__Type__c": "Custom",
+          "copado__Worker_Size__c": "S",
+          "CreatedDate": "2022-05-25T06:57:42.000+0000",
+          "Id": "a0l5j000000FA54AAG",
+          "IsDeleted": false,
+          "LastModifiedDate": "2022-05-25T07:43:57.000+0000",
+          "LastReferencedDate": "2022-05-25T07:43:57.000+0000",
+          "LastViewedDate": "2022-05-25T07:43:57.000+0000",
+          "Name": "Heroku Deploy",
+          "SystemModstamp": "2022-05-25T07:43:57.000+0000"
+        }
+      ],
+      "ObjectType": "copado__Function__c"
+    }
+  ],
+  "blobsByUID": {}
+}
